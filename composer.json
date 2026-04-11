@@ -1,0 +1,27 @@
+{
+  "name": "afca-plugins/pro-hit-tracker",
+  "description": "Tracks unique daily hits per post/page via REST API, with spam protection.",
+  "type": "wordpress-plugin",
+  "autoload": {
+    "psr-4": {
+      "Afca\\Plugins\\ProHitTracker\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "André Amorim",
+      "email": "contact@andreamorim.site"
+    }
+  ],
+  "require-dev": {
+    "wp-coding-standards/wpcs": "3.0.0",
+    "phpcsstandards/phpcsutils": "^1.0",
+    "phpcsstandards/phpcsextra": "1.2.0"
+  },
+  "config": {
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    }
+  },
+  "require": {}
+}
