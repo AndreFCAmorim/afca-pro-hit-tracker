@@ -19,8 +19,7 @@ if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
 	require_once __DIR__ . '/vendor/autoload.php';
 }
 
-$plugin_data = get_plugin_data( __FILE__ );
-define( 'PHT_VERSION', $plugin_data['Version'] );
+define( 'PHT_VERSION', '1.0' );
 define( 'PHT_DIR', plugin_dir_path( __FILE__ ) );
 define( 'PHT_URL', plugin_dir_url( __FILE__ ) );
 
