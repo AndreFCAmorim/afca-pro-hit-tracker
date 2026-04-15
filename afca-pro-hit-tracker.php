@@ -33,7 +33,7 @@ use Afca\Plugins\ProHitTracker\Frontend\Enqueue;
 
 add_action(
 	'plugins_loaded',
-	function (): void {
+	function () {
 		( new TrackEndpoint() )->register();
 		( new NonceEndpoint() )->register();
 		( new SettingsPage() )->register();

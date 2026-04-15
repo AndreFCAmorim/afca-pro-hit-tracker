@@ -6,13 +6,13 @@ use Afca\Plugins\ProHitTracker\Tracker\Cleaner;
 
 class SettingsPage {
 
-	public function register(): void {
+	public function register() {
 		add_action( 'admin_menu', [ $this, 'add_page' ] );
 		add_action( 'admin_init', [ $this, 'register_settings' ] );
 		add_action( 'admin_post_pht_reset', [ $this, 'handle_reset' ] );
 	}
 
-	public function add_page(): void {
+	public function add_page() {
 		add_options_page(
 			'Pro Hit Tracker Settings',
 			'Pro Hit Tracker',
@@ -22,7 +22,7 @@ class SettingsPage {
 		);
 	}
 
-	public function register_settings(): void {
+	public function register_settings() {
 		register_setting(
 			'pht_settings_group',
 			'pht_post_types',
@@ -38,7 +38,7 @@ class SettingsPage {
 		);
 	}
 
-	public function handle_reset(): void {
+	public function handle_reset() {
 		if ( ! current_user_can( 'manage_options' ) ) {
 			wp_die( 'Unauthorized', 403 );
 		}
@@ -62,7 +62,7 @@ class SettingsPage {
 		exit;
 	}
 
-	public function render(): void {
+	public function render() {
 		if ( ! current_user_can( 'manage_options' ) ) {
 			return;
 		}

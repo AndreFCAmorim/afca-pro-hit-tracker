@@ -4,7 +4,7 @@ namespace Afca\Plugins\ProHitTracker\Support;
 
 class PostTypes {
 
-	public static function get(): array {
+	public static function get() {
 		$saved = get_option( 'pht_post_types', '' );
 
 		if ( empty( trim( $saved ) ) ) {

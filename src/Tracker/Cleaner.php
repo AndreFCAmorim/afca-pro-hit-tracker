@@ -4,7 +4,7 @@ namespace Afca\Plugins\ProHitTracker\Tracker;
 
 class Cleaner {
 
-	public function run(): array {
+	public function run() {
 		global $wpdb;
 
 		$meta_deleted = $wpdb->query(

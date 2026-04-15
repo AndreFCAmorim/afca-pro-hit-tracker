@@ -6,11 +6,11 @@ use Afca\Plugins\ProHitTracker\Support\Helpers;
 
 class SpamGuard {
 
-	public function is_bot(): bool {
+	public function is_bot() {
 		return Helpers::is_bot();
 	}
 
-	public function is_rate_limited(): bool {
+	public function is_rate_limited() {
 		$key   = 'pht_rate_' . md5( Helpers::client_ip() );
 		$count = (int) get_transient( $key );
 
@@ -22,7 +22,7 @@ class SpamGuard {
 		return false;
 	}
 
-	public function is_valid_origin( \WP_REST_Request $request ): bool {
+	public function is_valid_origin( \WP_REST_Request $request ) {
 		$home    = home_url();
 		$origin  = $request->get_header( 'origin' );
 		$referer = $request->get_header( 'referer' );

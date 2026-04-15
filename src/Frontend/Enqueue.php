@@ -6,11 +6,11 @@ use Afca\Plugins\ProHitTracker\Support\PostTypes;
 
 class Enqueue {
 
-	public function register(): void {
+	public function register() {
 		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue' ] );
 	}
 
-	public function enqueue(): void {
+	public function enqueue() {
 		if ( ! is_singular() ) {
 			return;
 		}

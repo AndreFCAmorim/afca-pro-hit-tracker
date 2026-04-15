@@ -16,11 +16,11 @@ class TrackEndpoint {
 		$this->recorder = new HitRecorder();
 	}
 
-	public function register(): void {
+	public function register() {
 		add_action( 'rest_api_init', [ $this, 'register_route' ] );
 	}
 
-	public function register_route(): void {
+	public function register_route() {
 		register_rest_route(
 			'pht/v1',
 			'/track',

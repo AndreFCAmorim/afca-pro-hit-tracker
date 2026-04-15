@@ -6,15 +6,15 @@ use Afca\Plugins\ProHitTracker\Support\PostTypes;
 
 class DashboardWidget {
 
-	public function register(): void {
+	public function register() {
 		add_action( 'wp_dashboard_setup', [ $this, 'add_widget' ] );
 	}
 
-	public function add_widget(): void {
+	public function add_widget() {
 		wp_add_dashboard_widget( 'top_posts_hits', 'Top Posts by Hits', [ $this, 'render' ] );
 	}
 
-	public function render(): void {
+	public function render() {
 		$posts = get_posts(
 			[
 				'post_type'      => PostTypes::get(),

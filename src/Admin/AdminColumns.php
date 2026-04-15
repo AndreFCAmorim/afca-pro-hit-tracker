@@ -6,12 +6,12 @@ use Afca\Plugins\ProHitTracker\Support\PostTypes;
 
 class AdminColumns {
 
-	public function register(): void {
+	public function register() {
 		add_action( 'init', [ $this, 'register_column_hooks' ], 20 );
 		add_action( 'pre_get_posts', [ $this, 'sort_by_hits' ] );
 	}
 
-	public function register_column_hooks(): void {
+	public function register_column_hooks() {
 		foreach ( PostTypes::get() as $pt ) {
 			$col_filter  = $pt === 'page' ? 'manage_pages_columns' : "manage_{$pt}_posts_columns";
 			$col_action  = $pt === 'page' ? 'manage_pages_custom_column' : "manage_{$pt}_posts_custom_column";
@@ -23,23 +23,23 @@ class AdminColumns {
 		}
 	}
 
-	public function add_column( array $cols ): array {
+	public function add_column( array $cols ) {
 		$cols['post_hits'] = 'Hits';
 		return $cols;
 	}
 
-	public function render_column( string $col, int $id ): void {
+	public function render_column( string $col, int $id ) {
 		if ( $col === 'post_hits' ) {
 			echo number_format( (int) get_post_meta( $id, 'post_hits', true ) );
 		}
 	}
 
-	public function sortable_column( array $cols ): array {
+	public function sortable_column( array $cols ) {
 		$cols['post_hits'] = 'post_hits';
 		return $cols;
 	}
 
-	public function sort_by_hits( \WP_Query $q ): void {
+	public function sort_by_hits( \WP_Query $q ) {
 		if ( ! is_admin() || ! $q->is_main_query() ) {
 			return;
 		}
