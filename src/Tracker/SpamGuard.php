@@ -10,8 +10,10 @@ class SpamGuard {
 		return Helpers::is_bot();
 	}
 
-	public function is_rate_limited() {
-		$key   = 'pht_rate_' . md5( Helpers::client_ip() );
+	public function is_rate_limited( $request, int $post_id ) {
+		$key   = 'pht_rate_' . md5(
+			Helpers::client_ip() . ':' . $request->get_route() . ':' . $post_id
+		);
 		$count = (int) get_transient( $key );
 
 		if ( $count >= 60 ) {

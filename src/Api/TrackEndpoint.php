@@ -63,11 +63,12 @@ class TrackEndpoint {
 			return new \WP_REST_Response( [ 'status' => 'bot ignored' ], 200 );
 		}
 
-		if ( $this->guard->is_rate_limited() ) {
+		$post_id = $request->get_param( 'post_id' );
+
+		if ( $this->guard->is_rate_limited( $request, $post_id ) ) {
 			return new \WP_REST_Response( [ 'error' => 'rate limit exceeded' ], 429 );
 		}
 
-		$post_id    = $request->get_param( 'post_id' );
 		$post       = get_post( $post_id );
 		$post_types = PostTypes::get();
 
