@@ -23,11 +23,14 @@ class SpamGuard {
 	}
 
 	public function is_valid_origin( \WP_REST_Request $request ) {
-		$home    = home_url();
+		$host = parse_url( home_url(), PHP_URL_HOST );
+
 		$origin  = $request->get_header( 'origin' );
 		$referer = $request->get_header( 'referer' );
 
-		return ( $origin && str_starts_with( $origin, $home ) )
-			|| ( $referer && str_starts_with( $referer, $home ) );
+		$origin_host  = $origin ? parse_url( $origin, PHP_URL_HOST ) : null;
+		$referer_host = $referer ? parse_url( $referer, PHP_URL_HOST ) : null;
+
+		return $origin_host === $host || $referer_host === $host;
 	}
 }
