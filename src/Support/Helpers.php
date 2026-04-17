@@ -5,7 +5,13 @@ namespace Afca\Plugins\ProHitTracker\Support;
 class Helpers {
 
 	public static function client_ip(): string {
-		return trim( explode( ',', $_SERVER['HTTP_X_FORWARDED_FOR'] ?? $_SERVER['REMOTE_ADDR'] ?? '0.0.0.0' )[0] );
+		$ip = $_SERVER['REMOTE_ADDR'] ?? '0.0.0.0';
+
+		if ( ! empty( $_SERVER['HTTP_CF_CONNECTING_IP'] ) ) {
+			$ip = $_SERVER['HTTP_CF_CONNECTING_IP'];
+		}
+
+		return trim( $ip );
 	}
 
 	public static function is_bot() {
